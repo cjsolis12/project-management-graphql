@@ -6,9 +6,12 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 
-app.use('./graphql', graphqlHTTP({
-schema,
-graphiql: process.env.NODE_ENV === 'development'
-}))
+app.use(
+    '/graphql',
+    graphqlHTTP({
+        schema: schema,
+        graphiql: true,
+    })
+  );
 
-app.listen(port, console.log(`server running on port ${port}`))
+app.listen(port, console.log(`server running on port http://localhost:${port}/graphql`))
